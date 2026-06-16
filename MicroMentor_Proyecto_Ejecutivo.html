@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroMentor — Documento de Proyecto Ejecutivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C3CE1;
+            --primary-light: #8B5CF6;
+            --primary-dark: #5228CC;
+            --accent: #06D6A0;
+            --accent-dark: #05B687;
+            --bg: #FAFBFF;
+            --surface: #FFFFFF;
+            --text: #1A1A2E;
+            --text-secondary: #555770;
+            --text-muted: #8E90A6;
+            --border: #E8E9F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--surface);
+            box-shadow: 0 1px 40px rgba(108, 60, 225, 0.06);
+        }
+
+        /* COVER */
+        .cover {
+            background: linear-gradient(135deg, #6C3CE1 0%, #3B1F8E 50%, #1A0F47 100%);
+            color: white;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: rgba(6, 214, 160, 0.08);
+        }
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.12);
+        }
+        .cover .badge {
+            display: inline-block;
+            background: rgba(6, 214, 160, 0.15);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .cover h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .cover .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 550px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .cover .meta {
+            font-size: 13px;
+            opacity: 0.5;
+            position: relative;
+        }
+
+        /* CONTENT */
+        .content { padding: 60px; }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 56px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            letter-spacing: -0.5px;
+        }
+        h2:first-child { margin-top: 0; }
+
+        h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 36px;
+            margin-bottom: 14px;
+        }
+
+        p { margin-bottom: 16px; color: var(--text-secondary); }
+
+        strong { color: var(--text); font-weight: 600; }
+
+        /* PILLAR CARDS */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .pillar {
+            background: linear-gradient(145deg, #F8F6FF, #F0EDFF);
+            border: 1px solid #E8E2FF;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+        .pillar .icon { font-size: 36px; margin-bottom: 12px; }
+        .pillar h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        .pillar p { font-size: 13px; margin: 0; color: var(--text-muted); line-height: 1.5; }
+
+        /* PROBLEM CARDS */
+        .problems { margin: 24px 0; }
+        .problem {
+            display: flex;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .problem:last-child { border-bottom: none; }
+        .problem .num {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .problem .text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .problem .text p { font-size: 14px; margin: 0; }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        thead th {
+            background: #F4F1FF;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        thead th:first-child { border-radius: 10px 0 0 0; }
+        thead th:last-child { border-radius: 0 10px 0 0; }
+        tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: #FAFBFF; }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: linear-gradient(135deg, #F0FDF4, #ECFDF5);
+            border: 1px solid #BBF7D0;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #FFFBEB, #FEF9E7);
+            border-color: #FDE68A;
+            border-left-color: var(--warning);
+        }
+        .highlight-box.info {
+            background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+            border-color: #C4B5FD;
+            border-left-color: var(--primary);
+        }
+        .highlight-box p { margin: 0; font-size: 14px; }
+        .highlight-box strong { color: var(--text); }
+
+        /* FLOW DIAGRAM */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 28px 0;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            background: var(--surface);
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 14px 20px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            min-width: 160px;
+        }
+        .flow-arrow { color: var(--primary-light); font-size: 22px; font-weight: 700; }
+
+        /* PRICING CARDS */
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .price-card {
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .price-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, #F8F6FF, #FFFFFF);
+            box-shadow: 0 4px 20px rgba(108, 60, 225, 0.1);
+            transform: scale(1.03);
+        }
+        .price-card .plan-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .price-card .price {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .price-card .price span { font-size: 16px; font-weight: 400; color: var(--text-muted); }
+        .price-card .desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            font-size: 13px;
+        }
+        .price-card ul li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+        }
+        .price-card ul li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* FINANCIAL CARDS */
+        .financials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .fin-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+        .fin-card .label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .fin-card .phase {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .fin-card .amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--success);
+            margin-bottom: 4px;
+        }
+        .fin-card .amount.cost { color: var(--text-muted); font-size: 24px; }
+        .fin-card .detail {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .fin-card .margin {
+            display: inline-block;
+            background: #ECFDF5;
+            color: var(--success);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* COMPETITOR GRID */
+        .comp-check { color: var(--success); font-weight: 700; }
+        .comp-cross { color: var(--danger); font-weight: 700; }
+        .comp-partial { color: var(--warning); font-weight: 700; }
+        tr.highlight-row { background: #F5F3FF !important; }
+        tr.highlight-row td { font-weight: 600; color: var(--primary-dark); }
+
+        /* TIMELINE */
+        .timeline { margin: 28px 0; }
+        .tl-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-left: 3px solid var(--border);
+            margin-left: 20px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .tl-item .tl-time {
+            flex-shrink: 0;
+            width: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .tl-item .tl-content h4 { font-size: 15px; margin-bottom: 6px; }
+        .tl-item .tl-content p { font-size: 13px; margin: 0; }
+
+        /* VISION */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+        .vision-card {
+            background: linear-gradient(145deg, #F8F6FF, #FFFFFF);
+            border: 1px solid #E8E2FF;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .vision-card .phase-num {
+            font-size: 11px; font-weight: 700;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .vision-card .phase-name {
+            font-size: 14px; font-weight: 700;
+            color: var(--primary-dark);
+            margin: 6px 0;
+        }
+        .vision-card .phase-time {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .vision-card .phase-goal {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--accent-dark);
+        }
+
+        /* ADVANTAGES */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .advantage {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+        .advantage .adv-num {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .advantage h4 { font-size: 15px; margin-bottom: 6px; }
+        .advantage p { font-size: 13px; margin: 0; }
+
+        /* PRINT */
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; max-width: 100%; }
+            .cover { padding: 50px 40px; }
+            .content { padding: 40px; }
+            h2 { break-before: auto; }
+            .pillars, .pricing, .financials, .advantages, .vision-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .cover { padding: 40px 30px; }
+            .cover h1 { font-size: 34px; }
+            .content { padding: 30px; }
+            .pillars, .pricing, .financials, .advantages, .vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="badge">Documento de Proyecto — Junio 2026</div>
+        <h1>MicroMentor</h1>
+        <p class="subtitle">La primera plataforma de micro-mentoría con IA para infoproductores principiantes en español.</p>
+        <p class="meta">Confidencial — Solo para socios fundadores</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- 1. RESUMEN -->
+        <h2>1. Resumen Ejecutivo</h2>
+        <p><strong>MicroMentor</strong> es una aplicación web de membresía mensual que ayuda a infoproductores principiantes (personas que quieren crear y vender productos digitales) a lanzar su primer producto con éxito, combinando tres elementos que hoy <strong>ningún competidor</strong> une en un solo producto:</p>
+
+        <div class="pillars">
+            <div class="pillar">
+                <div class="icon">🤖</div>
+                <h4>Mentor IA</h4>
+                <p>Asistente inteligente entrenado en estrategia de infoproductos. Feedback personalizado 24/7 sin necesidad de un mentor humano.</p>
+            </div>
+            <div class="pillar">
+                <div class="icon">👥</div>
+                <h4>Pods</h4>
+                <p>Micro-comunidades cerradas de máximo 20 personas. Generan accountability, apoyo mutuo y retención altísima.</p>
+            </div>
+            <div class="pillar">
+                <div class="icon">📚</div>
+                <h4>Playbooks</h4>
+                <p>Guías prácticas de máximo 15 minutos enfocadas en UNA acción. Eliminan la parálisis de "no sé qué hacer".</p>
+            </div>
+        </div>
+
+        <p><strong>Mercado objetivo:</strong> Hispanohablantes en Latinoamérica y España que quieren crear su primer producto digital pero no saben cómo empezar, no pueden pagar un mentor privado ($500+/mes), y se sienten perdidos entre herramientas y cursos genéricos.</p>
+
+        <!-- 2. PROBLEMA -->
+        <h2>2. El Problema</h2>
+        <p>El mercado de infoproductos en LATAM está en crecimiento, pero los principiantes enfrentan <strong>5 problemas críticos</strong> que nadie resuelve bien:</p>
+
+        <div class="problems">
+            <div class="problem">
+                <div class="num">1</div>
+                <div class="text">
+                    <h4>Parálisis de análisis</h4>
+                    <p>No saben qué producto crear, para quién, ni cómo validar si alguien lo compraría. Se quedan meses "investigando" sin actuar.</p>
+                </div>
+            </div>
+            <div class="problem">
+                <div class="num">2</div>
+                <div class="text">
+                    <h4>Herramientas sin estrategia</h4>
+                    <p>Existen decenas de plataformas para <em>vender</em> cursos, pero ninguna que les <em>enseñe qué vender y cómo</em>. Es como tener una caja registradora sin saber qué poner en la tienda.</p>
+                </div>
+            </div>
+            <div class="problem">
+                <div class="num">3</div>
+                <div class="text">
+                    <h4>Contenido genérico e IA indistinguible</h4>
+                    <p>En 2026, cualquier persona puede generar contenido con IA. La información básica es gratuita. Los principiantes no saben cómo diferenciarse.</p>
+                </div>
+            </div>
+            <div class="problem">
+                <div class="num">4</div>
+                <div class="text">
+                    <h4>Soledad del emprendedor</h4>
+                    <p>Crear un negocio digital solo es abrumador. Los masterminds y mentorías privadas cuestan $500-$2,000/mes, fuera del alcance de quien está comenzando.</p>
+                </div>
+            </div>
+            <div class="problem">
+                <div class="num">5</div>
+                <div class="text">
+                    <h4>Métricas de vanidad</h4>
+                    <p>Miden likes y seguidores en lugar de conversiones y ventas reales. Operan a ciegas sin saber qué funciona.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SOLUCIÓN -->
+        <h2>3. La Solución</h2>
+
+        <h3>3.1 Los Pods (Micro-Comunidades)</h3>
+        <p>Un <strong>Pod</strong> es un grupo cerrado de máximo 20 personas con un objetivo similar. La asignación es 100% automática:</p>
+
+        <div class="flow">
+            <div class="flow-step">Usuario se registra</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Responde 3 preguntas</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">La app lo asigna al Pod ideal</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Pods llenos se abren automáticamente</div>
+        </div>
+
+        <h3>3.2 El Mentor IA (sin invenciones)</h3>
+        <p>Usamos una tecnología llamada <strong>RAG</strong> (Retrieval-Augmented Generation) que garantiza que la IA <strong>nunca invente</strong>:</p>
+
+        <div class="flow">
+            <div class="flow-step">El usuario pregunta</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">La IA busca en NUESTRA base de conocimiento</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Responde SOLO con esa información</div>
+        </div>
+
+        <div class="highlight-box info">
+            <p><strong>Si la IA no encuentra la respuesta en nuestros documentos, dice "No tengo información suficiente" en lugar de inventar.</strong> Toda respuesta es verificable y alineada con nuestra metodología.</p>
+        </div>
+
+        <h3>3.3 Dinámica Semanal (100% Automatizada)</h3>
+        <table>
+            <thead>
+                <tr><th>Día</th><th>Actividad</th><th>¿Quién ejecuta?</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Lunes</strong></td><td>La app publica el reto semanal en el Pod</td><td>🤖 Automático</td></tr>
+                <tr><td><strong>Miércoles</strong></td><td>Los miembros comparten sus respuestas</td><td>👥 Los usuarios</td></tr>
+                <tr><td><strong>Miércoles</strong></td><td>El Mentor IA da feedback personalizado a cada uno</td><td>🤖 Automático</td></tr>
+                <tr><td><strong>Viernes</strong></td><td>"Hot Seat": 2 miembros presentan su avance y reciben retroalimentación</td><td>👥 + 🤖</td></tr>
+                <tr><td><strong>Domingo</strong></td><td>Reporte semanal de progreso enviado por email</td><td>🤖 Automático</td></tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box">
+            <p><strong>Todo funciona de forma asíncrona</strong> — cada persona participa cuando puede. No hay que coordinar horarios ni hacer llamadas en vivo. Nuestra participación humana: ~2-3 horas/semana.</p>
+        </div>
+
+        <!-- 4. MODELO DE NEGOCIO -->
+        <h2>4. Modelo de Negocio</h2>
+
+        <div class="pricing">
+            <div class="price-card">
+                <div class="plan-name">Community</div>
+                <div class="price">$19<span>/mes</span></div>
+                <div class="desc">100% automatizado</div>
+                <ul>
+                    <li>Acceso al Pod</li>
+                    <li>Retos semanales</li>
+                    <li>Mentor IA básico</li>
+                    <li>Playbooks</li>
+                </ul>
+            </div>
+            <div class="price-card featured">
+                <div class="plan-name">Accelerator</div>
+                <div class="price">$49<span>/mes</span></div>
+                <div class="desc">95% automatizado</div>
+                <ul>
+                    <li>Todo de Community</li>
+                    <li>Mentor IA avanzado (con memoria)</li>
+                    <li>Hot Seats con feedback IA</li>
+                    <li>Pods avanzados</li>
+                </ul>
+            </div>
+            <div class="price-card">
+                <div class="plan-name">VIP</div>
+                <div class="price">$99<span>/mes</span></div>
+                <div class="desc">80% automatizado</div>
+                <ul>
+                    <li>Todo de Accelerator</li>
+                    <li>Canal privado con respuesta humana</li>
+                    <li>1 sesión grupal en vivo/mes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. COMPETENCIA -->
+        <h2>5. Análisis Competitivo</h2>
+
+        <div class="highlight-box info">
+            <p><strong>Competidores directos que hagan exactamente lo que propone MicroMentor (Mentor IA + Pods + infoproductores + español): NINGUNO.</strong> Los competidores indirectos resuelven solo partes del problema.</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Competidor</th>
+                    <th>Precio</th>
+                    <th>Tiene IA</th>
+                    <th>Pods</th>
+                    <th>Español</th>
+                    <th>Para principiantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Skool</strong></td><td>$9-99/mes</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-check">✓</td></tr>
+                <tr><td><strong>Circle.so</strong></td><td>$89-199/mes</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td></tr>
+                <tr><td><strong>Delphi AI</strong></td><td>$79-399/mes</td><td class="comp-check">✓</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td></tr>
+                <tr><td><strong>Systeme.io</strong></td><td>Gratis-$97/mes</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-check">✓</td><td class="comp-check">✓</td></tr>
+                <tr><td><strong>Hotmart</strong></td><td>Gratis (comisiones)</td><td class="comp-cross">✗</td><td class="comp-cross">✗</td><td class="comp-check">✓</td><td class="comp-check">✓</td></tr>
+                <tr><td><strong>Masterminds</strong></td><td>$500-2,000+/mes</td><td class="comp-cross">✗</td><td class="comp-check">✓</td><td class="comp-check">✓</td><td class="comp-cross">✗</td></tr>
+                <tr class="highlight-row"><td><strong>MicroMentor 🏆</strong></td><td>$19-99/mes</td><td class="comp-check">✓</td><td class="comp-check">✓</td><td class="comp-check">✓</td><td class="comp-check">✓</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Nuestras 4 ventajas competitivas</h3>
+        <div class="advantages">
+            <div class="advantage">
+                <div class="adv-num">1</div>
+                <h4>Combinación única</h4>
+                <p>Delphi tiene IA sin comunidad. Skool tiene comunidad sin IA. <strong>Nosotros tenemos ambas.</strong></p>
+            </div>
+            <div class="advantage">
+                <div class="adv-num">2</div>
+                <h4>Verticalidad</h4>
+                <p>No somos genéricos. Todo está diseñado para <strong>un solo usuario: el infoproductor principiante.</strong></p>
+            </div>
+            <div class="advantage">
+                <div class="adv-num">3</div>
+                <h4>Precio accesible</h4>
+                <p><strong>10-25x más barato</strong> que un mastermind tradicional con una experiencia similar.</p>
+            </div>
+            <div class="advantage">
+                <div class="adv-num">4</div>
+                <h4>Español primero</h4>
+                <p>El 95% de los competidores están en inglés. <strong>Nosotros somos nativos en español</strong> y LATAM.</p>
+            </div>
+        </div>
+
+        <!-- 6. COSTOS Y RENTABILIDAD -->
+        <h2>6. Costos y Rentabilidad</h2>
+
+        <h3>Stack tecnológico</h3>
+        <table>
+            <thead>
+                <tr><th>Componente</th><th>Servicio</th><th>Costo mensual</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Hosting</td><td>Vercel</td><td>$0 (inicio) → $20 (escala)</td></tr>
+                <tr><td>Base de datos + Auth</td><td>Supabase</td><td>$0 (inicio) → $25 (escala)</td></tr>
+                <tr><td>Inteligencia Artificial</td><td>Google Gemini API</td><td>~$0.14 por usuario/mes</td></tr>
+                <tr><td>Email</td><td>Resend</td><td>$0 (inicio) → $20 (escala)</td></tr>
+                <tr><td>Pagos</td><td>Stripe</td><td>3.6% + $0.30 por cobro</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Proyecciones de rentabilidad</h3>
+        <div class="financials">
+            <div class="fin-card">
+                <div class="label">Fase Beta</div>
+                <div class="phase">50 usuarios</div>
+                <div class="amount cost">$57/mes</div>
+                <div class="detail">Costo total</div>
+                <div class="amount" style="font-size:24px; margin-top:12px;">$893/mes</div>
+                <div class="detail">Ganancia neta</div>
+                <div class="margin">Margen 94%</div>
+            </div>
+            <div class="fin-card">
+                <div class="label">Crecimiento</div>
+                <div class="phase">150 usuarios</div>
+                <div class="amount cost">$283/mes</div>
+                <div class="detail">Costo total</div>
+                <div class="amount" style="font-size:24px; margin-top:12px;">$2,567/mes</div>
+                <div class="detail">Ganancia neta</div>
+                <div class="margin">Margen 90%</div>
+            </div>
+            <div class="fin-card">
+                <div class="label">Escala</div>
+                <div class="phase">500 usuarios (mix tiers)</div>
+                <div class="amount cost">$737/mes</div>
+                <div class="detail">Costo total</div>
+                <div class="amount" style="font-size:24px; margin-top:12px;">$16,213/mes</div>
+                <div class="detail">Ganancia neta</div>
+                <div class="margin">Margen 96%</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>El negocio es rentable desde el primer usuario.</strong> Con solo 3 suscriptores a $19/mes se cubren los costos base. La inversión inicial es de ~$33 USD (dominio + API de prueba). El recurso principal es nuestro tiempo.</p>
+        </div>
+
+        <!-- 7. ROADMAP -->
+        <h2>7. Roadmap de Lanzamiento</h2>
+
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-time">Semanas 1-2</div>
+                <div class="tl-content">
+                    <h4>Preparación</h4>
+                    <p>Escribir 20-30 playbooks (base de conocimiento), definir retos semanales para 3 meses, diseñar identidad visual.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">Semanas 3-6</div>
+                <div class="tl-content">
+                    <h4>Desarrollo del MVP</h4>
+                    <p>Construir la app web, integrar Mentor IA con RAG, sistema de Pods automático, pagos con Stripe, emails automáticos.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">Semana 7</div>
+                <div class="tl-content">
+                    <h4>Beta Privada</h4>
+                    <p>Invitar 20 usuarios beta. Abrir 1 Pod de prueba. Recoger feedback intensivo.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">Semanas 8-10</div>
+                <div class="tl-content">
+                    <h4>Iteración</h4>
+                    <p>Ajustar basándose en feedback real. Pulir experiencia del Mentor IA. Preparar landing page de lanzamiento.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-time">Semana 11</div>
+                <div class="tl-content">
+                    <h4>Lanzamiento Público</h4>
+                    <p>Abrir inscripciones. Campaña de lanzamiento en redes sociales. Meta: 50 usuarios pagando.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. RIESGOS -->
+        <h2>8. Riesgos y Mitigación</h2>
+        <table>
+            <thead>
+                <tr><th>Riesgo</th><th>Probabilidad</th><th>Mitigación</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Baja retención</td><td><span class="comp-partial">Media</span></td><td>Los Pods generan compromiso social. Múltiples niveles evitan "graduaciones"</td></tr>
+                <tr><td>Competidor copia la idea</td><td><span class="comp-partial">Media</span></td><td>Velocidad de ejecución y comunidad activa como barrera de entrada</td></tr>
+                <tr><td>Skool agrega IA</td><td><span class="comp-partial">Media-Baja</span></td><td>Para cuando lo hagan, ya tenemos ventaja de verticalidad y usuarios</td></tr>
+                <tr><td>La IA da respuestas incorrectas</td><td><span class="comp-check">Baja</span></td><td>RAG + base de conocimiento curada garantizan respuestas fundamentadas</td></tr>
+                <tr><td>Pocos usuarios iniciales</td><td><span class="comp-partial">Media</span></td><td>Beta gratuita + validación con contenido en redes antes de invertir</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 9. VISIÓN -->
+        <h2>9. Visión a Largo Plazo</h2>
+
+        <div class="vision-grid">
+            <div class="vision-card">
+                <div class="phase-num">Fase 1</div>
+                <div class="phase-name">MicroMentor</div>
+                <div class="phase-time">Meses 1-6</div>
+                <div class="phase-goal">$3,800/mes</div>
+                <p style="font-size:11px; color: var(--text-muted); margin-top:4px;">200 usuarios</p>
+            </div>
+            <div class="vision-card">
+                <div class="phase-num">Fase 2</div>
+                <div class="phase-name">+ LaunchPad</div>
+                <div class="phase-time">Meses 7-12</div>
+                <div class="phase-goal">$16,000/mes</div>
+                <p style="font-size:11px; color: var(--text-muted); margin-top:4px;">500 usuarios</p>
+            </div>
+            <div class="vision-card">
+                <div class="phase-num">Fase 3</div>
+                <div class="phase-name">+ BrandVoice</div>
+                <div class="phase-time">Año 2</div>
+                <div class="phase-goal">$50,000/mes</div>
+                <p style="font-size:11px; color: var(--text-muted); margin-top:4px;">1,500 usuarios</p>
+            </div>
+            <div class="vision-card">
+                <div class="phase-num">Fase 4</div>
+                <div class="phase-name">Creator OS</div>
+                <div class="phase-time">Año 3</div>
+                <div class="phase-goal">$100K+/mes</div>
+                <p style="font-size:11px; color: var(--text-muted); margin-top:4px;">5,000+ usuarios</p>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px; text-align: center;">
+            <p style="font-size: 16px;"><strong>¿Preguntas? Revisemos este documento juntos y definamos los próximos pasos.</strong></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
