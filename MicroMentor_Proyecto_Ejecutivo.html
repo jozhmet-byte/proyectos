@@ -450,6 +450,157 @@
         .advantage h4 { font-size: 15px; margin-bottom: 6px; }
         .advantage p { font-size: 13px; margin: 0; }
 
+        /* CHAT EXAMPLE */
+        .chat-example {
+            background: #F8F9FC;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .chat-msg {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .chat-msg:last-child { margin-bottom: 0; }
+        .chat-avatar {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .chat-avatar.user { background: #E8E2FF; }
+        .chat-avatar.ai { background: #D1FAE5; }
+        .chat-bubble {
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            max-width: 85%;
+        }
+        .chat-bubble.ai-bubble {
+            background: linear-gradient(135deg, #F0FDF4, #ECFDF5);
+            border: 1px solid #BBF7D0;
+        }
+        .chat-bubble strong { color: var(--text); }
+
+        /* OPERATION GRID */
+        .op-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .op-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .op-card .op-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .op-card .op-label.auto { color: var(--accent-dark); }
+        .op-card .op-label.human { color: var(--primary); }
+        .op-card .op-time {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .op-card .op-time.auto-time { color: var(--accent-dark); }
+        .op-card .op-time.human-time { color: var(--primary); }
+        .op-card .op-desc { font-size: 13px; color: var(--text-muted); }
+
+        /* METRICS GRID */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 24px 0;
+        }
+        .metric-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .metric-card .metric-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .metric-card .metric-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .metric-card .metric-target {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* INVESTMENT CARD */
+        .invest-card {
+            background: linear-gradient(135deg, #1A0F47, #3B1F8E);
+            color: white;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .invest-card .invest-amount {
+            font-size: 56px;
+            font-weight: 800;
+            margin: 12px 0;
+        }
+        .invest-card .invest-label {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .invest-card .invest-note {
+            font-size: 13px;
+            opacity: 0.6;
+            margin-top: 16px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* RECURRENCE REASONS */
+        .recurrence {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .recurrence-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px;
+            background: #FAFBFF;
+            border-radius: 10px;
+        }
+        .recurrence-item .rec-icon {
+            flex-shrink: 0;
+            font-size: 22px;
+        }
+        .recurrence-item .rec-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
         /* PRINT */
         @media print {
             body { background: white; }
@@ -598,7 +749,47 @@
         </table>
 
         <div class="highlight-box">
-            <p><strong>Todo funciona de forma asíncrona</strong> — cada persona participa cuando puede. No hay que coordinar horarios ni hacer llamadas en vivo. Nuestra participación humana: ~2-3 horas/semana.</p>
+            <p><strong>Todo funciona de forma asíncrona</strong> — cada persona participa cuando puede. No hay que coordinar horarios ni hacer llamadas en vivo.</p>
+        </div>
+
+        <h3>3.4 Ejemplo real de interacción con el Mentor IA</h3>
+        <div class="chat-example">
+            <div class="chat-msg">
+                <div class="chat-avatar user">👤</div>
+                <div class="chat-bubble">No sé si mi idea de curso de cocina saludable tiene mercado. ¿Me puedes ayudar?</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar ai">🤖</div>
+                <div class="chat-bubble ai-bubble">
+                    <strong>Según nuestro framework de validación</strong>, tu idea tiene potencial pero necesita enfocarse más. "Cocina saludable" es muy amplio — compites con millones de recetas gratis en YouTube.<br><br>
+                    Te sugiero un nicho como: <strong>"Meal prep semanal para mamás que trabajan y quieren alimentar sano sin pasar más de 30 min en la cocina"</strong>.<br><br>
+                    Para validarlo, haz esto esta semana:<br>
+                    1. Publica una encuesta en tus stories con estas 3 preguntas...<br>
+                    2. Observa cuántas personas responden vs. tus stories normales<br>
+                    3. Si más del 15% responde, tienes una señal fuerte de demanda<br><br>
+                    <em>📖 Fuente: Playbook #4 — "Cómo validar tu idea en 7 días"</em>
+                </div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar user">👤</div>
+                <div class="chat-bubble">¡Genial! ¿Y cuánto debería cobrar por el curso?</div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar ai">🤖</div>
+                <div class="chat-bubble ai-bubble">
+                    <strong>Basándome en tu perfil</strong>, veo que tienes ~2,000 seguidores en Instagram y aún no has vendido ningún producto digital. Para tu primer lanzamiento, te recomiendo el <strong>método "Ancla + Descuento"</strong>:<br><br>
+                    1. Calcula cuánto cobrarías por 1 hora de consultoría → ej: $50<br>
+                    2. Tu curso tiene ~3 horas de contenido → valor ancla: $150<br>
+                    3. Precio de lanzamiento: <strong>$47</strong> (descuento del 70%)<br>
+                    4. Después del lanzamiento, sube a $67<br><br>
+                    Esto genera urgencia y se siente como una ganga vs. el valor real.<br><br>
+                    <em>📖 Fuente: Playbook #8 — "Pricing para tu primer producto digital"</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box info">
+            <p>Observa cómo el Mentor IA <strong>cita la fuente</strong> de cada respuesta (Playbook #4, #8). No inventa — se basa exclusivamente en nuestra base de conocimiento curada. Además, <strong>recuerda el contexto del usuario</strong> (seguidores, etapa, productos anteriores) para dar consejos personalizados.</p>
         </div>
 
         <!-- 4. MODELO DE NEGOCIO -->
@@ -636,6 +827,27 @@
                     <li>Canal privado con respuesta humana</li>
                     <li>1 sesión grupal en vivo/mes</li>
                 </ul>
+            </div>
+        </div>
+
+        <h3>¿Por qué pagarían cada mes? (Modelo recurrente)</h3>
+        <p>A diferencia de un curso (compra única), MicroMentor genera valor continuo:</p>
+        <div class="recurrence">
+            <div class="recurrence-item">
+                <div class="rec-icon">🔄</div>
+                <div class="rec-text"><strong>Retos semanales nuevos</strong> — Cada semana hay contenido fresco y dinámicas que mantienen al usuario activo</div>
+            </div>
+            <div class="recurrence-item">
+                <div class="rec-icon">🧠</div>
+                <div class="rec-text"><strong>El Mentor IA mejora</strong> — Mientras más lo usas, mejor te conoce y más personalizado es el feedback</div>
+            </div>
+            <div class="recurrence-item">
+                <div class="rec-icon">📈</div>
+                <div class="rec-text"><strong>Progresión por niveles</strong> — Cuando completas un nivel, pasas al siguiente Pod (ej: de "Lanzamiento" a "Escalamiento")</div>
+            </div>
+            <div class="recurrence-item">
+                <div class="rec-icon">🤝</div>
+                <div class="rec-text"><strong>Tu red de contactos</strong> — La comunidad se vuelve tu red profesional. No la quieres perder</div>
             </div>
         </div>
 
@@ -800,8 +1012,104 @@
             </tbody>
         </table>
 
-        <!-- 9. VISIÓN -->
-        <h2>9. Visión a Largo Plazo</h2>
+        <!-- 9. OPERACIÓN DIARIA -->
+        <h2>9. Operación del Día a Día</h2>
+        <p>Una de las ventajas más fuertes de MicroMentor es que <strong>el 95% de la operación es automática</strong>. El sistema de Pods, retos, feedback de IA y reportes funciona sin intervención humana.</p>
+
+        <div class="op-grid">
+            <div class="op-card">
+                <div class="op-label auto">🤖 LA APP HACE (AUTOMÁTICO)</div>
+                <div class="op-time auto-time">24/7</div>
+                <div class="op-desc">Asignar Pods, publicar retos semanales, dar feedback IA personalizado, enviar reportes por email, generar resúmenes, rotar Hot Seats, abrir nuevos Pods cuando se llenan</div>
+            </div>
+            <div class="op-card">
+                <div class="op-label human">👤 NOSOTROS HACEMOS</div>
+                <div class="op-time human-time">2-3 hrs/sem</div>
+                <div class="op-desc">Revisar métricas (15 min), grabar 1 tip semanal opcional (20 min), actualizar playbooks (2 hrs/mes), participar en posts destacados (30 min)</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Actividad</th><th>Frecuencia</th><th>Tiempo</th><th>¿Quién?</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Revisar métricas de retención y actividad</td><td>Semanal</td><td>15 min</td><td>Nosotros</td></tr>
+                <tr><td>Grabar tip/video corto (opcional)</td><td>Semanal</td><td>20 min</td><td>Nosotros</td></tr>
+                <tr><td>Actualizar playbooks y retos</td><td>Mensual</td><td>2 hrs</td><td>Nosotros</td></tr>
+                <tr><td>Participar en comunidad</td><td>Cuando queramos</td><td>30 min</td><td>Nosotros</td></tr>
+                <tr><td>Asignar pods, enviar retos, feedback IA, reportes</td><td>Constante</td><td><strong>0 min</strong></td><td>🤖 La app</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 10. INVERSIÓN -->
+        <h2>10. Inversión Inicial Requerida</h2>
+
+        <div class="invest-card">
+            <div class="invest-label">INVERSIÓN MONETARIA TOTAL PARA EMPEZAR</div>
+            <div class="invest-amount">~$33 USD</div>
+            <div class="invest-label">Dominio ($12/año) + API de IA para pruebas (~$21 en 3 meses)</div>
+            <div class="invest-note">La infraestructura (Vercel, Supabase, Resend) empieza en free tier = $0. El recurso principal es nuestro tiempo: ~2-3 semanas para crear la base de conocimiento y ~4-6 semanas para desarrollar el MVP.</div>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Concepto</th><th>Costo</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Desarrollo de la app (si lo hacemos nosotros)</td><td><strong>$0</strong> (nuestro tiempo)</td></tr>
+                <tr><td>Dominio (.com o .app)</td><td>~$12/año</td></tr>
+                <tr><td>Infraestructura primeros 3 meses (free tiers)</td><td><strong>$0</strong></td></tr>
+                <tr><td>API de IA para pruebas (primeros 50 usuarios)</td><td>~$21 (3 meses)</td></tr>
+                <tr><td><strong>Total inversión inicial</strong></td><td><strong>~$33 USD</strong></td></tr>
+            </tbody>
+        </table>
+
+        <!-- 11. MÉTRICAS -->
+        <h2>11. Métricas Clave a Monitorear</h2>
+        <p>Para saber si el negocio está sano, monitorearemos estas 6 métricas principales:</p>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-name">MRR</div>
+                <div class="metric-desc">Ingresos mensuales recurrentes</div>
+                <div class="metric-target">$950</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Meta: 50 usuarios × $19</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">Churn Rate</div>
+                <div class="metric-desc">% de usuarios que cancelan al mes</div>
+                <div class="metric-target">&lt; 8%</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Los Pods reducen cancelaciones</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">LTV</div>
+                <div class="metric-desc">Cuánto paga un usuario en su vida</div>
+                <div class="metric-target">&gt; $190</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Meta: &gt;10 meses promedio</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">CAC</div>
+                <div class="metric-desc">Costo de adquirir un usuario</div>
+                <div class="metric-target">&lt; $15</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Orgánico + referidos</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">Actividad del Pod</div>
+                <div class="metric-desc">% de miembros que participan/semana</div>
+                <div class="metric-target">&gt; 60%</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Indicador de salud de la comunidad</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">NPS</div>
+                <div class="metric-desc">Satisfacción y probabilidad de recomendar</div>
+                <div class="metric-target">&gt; 50</div>
+                <p style="font-size:11px; color:var(--text-muted); margin:4px 0 0;">Encuesta trimestral</p>
+            </div>
+        </div>
+
+        <!-- 12. VISIÓN -->
+        <h2>12. Visión a Largo Plazo</h2>
 
         <div class="vision-grid">
             <div class="vision-card">
